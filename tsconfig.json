@@ -1,0 +1,98 @@
+{
+    "compilerOptions": {
+        // Allow JavaScript files to be compiled.
+        "allowJs": true,
+        // Allow default imports from modules with no default export. This does not affect code emit, just typechecking.              
+        "allowSyntheticDefaultImports": false,
+        // Do not report errors on unreachable code.      
+        "allowUnreachableCode": false,
+        // Do not report errors on unused labels.            
+        "allowUnusedLabels": false, 
+        // The character set of the input files.                
+        "charset": "UTF-8",
+        // Generates corresponding ‘.d.ts’ file.                         
+        "declaration": false,
+        // Show diagnostic information.                      
+        "diagnostics": true,
+        // Emit a UTF-8 Byte Order Mark (BOM) in the beginning of output files.                     
+        "emitBOM": false,
+        // Emit design-type metadata for decorated declarations in source.                           
+        "emitDecoratorMetadata": false,  
+        // Enables experimental support for ES7 decorators.           
+        "experimentalDecorators": false,
+        // Disallow inconsistently-cased references to the same file.            
+        "forceConsistentCasingInFileNames": false,
+        // Emit a single file with source maps instead of having a separate file.  
+        "inlineSourceMap": false,
+        // Emit the source alongside the sourcemaps within a single file; requires --inlineSourceMap or --sourceMap to be set.                   
+        "inlineSources": false,
+        // Unconditionally emit imports for unresolved files.                     
+        "isolatedModules": false,
+        // Support JSX in ‘.tsx’ files: 'React' or 'Preserve'. See JSX.                   
+        "jsx": "preserve", 
+        // Print names of files part of the compilation.                         
+        "listFiles": true,
+        // The locale to use to show error messages, e.g. en-us.                         
+        "locale": "",
+        // Specifies the location where debugger should locate map files instead of generated locations. Use this flag if the .map files will be located at run-time in a different location than than the .js files. The location specified will be embedded in the sourceMap to direct the debugger where the map files where be located.                              
+        "mapRoot": "",
+        // Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es6', or 'es2015'. 
+        //      - Only 'amd' and 'system' can be used in conjunction with --outFile. 
+        //      - 'es6' and 'es2015' values may not be used when targeting ES5 or lower.                               
+        "module": "commonjs",
+        // Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es6', or 'es2015'.
+        //      - Only 'amd' and 'system' can be used in conjunction with --outFile.
+        //      - 'es6' and 'es2015' values may not be used when targeting ES5 or lower.
+        "moduleResolution": "classic",
+        // Use the specified end of line sequence to be used when emitting files: 'crlf' (windows) or 'lf' (unix).”
+        "newLine": "CRLF",
+        // Do not emit outputs.
+        "noEmit": false,
+        // Do not generate custom helper functions like __extends in compiled output.
+        "noEmitHelpers": false,
+        // Do not emit outputs if any errors were reported.
+        "noEmitOnError": false,
+        // Report errors for fallthrough cases in switch statement.
+        "noFallthroughCasesInSwitch": false,
+        // Raise error on expressions and declarations with an implied ‘any’ type.
+        "noImplicitAny": false,
+        // Report error when not all code paths in function return a value.
+        "noImplicitReturns": false,
+        // Do not emit "use strict" directives in module output.
+        "noImplicitUseStrict": false,
+        // Do not include the default library file (lib.d.ts).
+        "noLib": false,
+        // Do not add triple-slash references or module import targets to the list of compiled files.
+        "noResolve": false,
+        // Redirect output structure to the directory.
+        // "outDir": "",
+        // Concatenate and emit output to single file. The order of concatenation is determined by the list of files passed to the compiler on the command line along with triple-slash references and imports. See output file order documentation for more details.
+        // "outFile": "",
+        // Do not erase const enum declarations in generated code. See const enums documentation for more details.
+        "preserveConstEnums": false,
+        // Stylize errors and messages using color and context.
+        "pretty": true,
+        // Specifies the object invoked for createElement and __spread when targeting ‘react’ JSX emit.
+        "reactNamespace": "",
+        // Remove all comments except copy-right header comments beginning with /*!
+        "removeComments": true,
+        // Specifies the root directory of input files. Only use to control the output directory structure with --outDir.
+        // "rootDir": "",
+        // Don’t check a user-defined default lib file’s valitidy.
+        "skipDefaultLibCheck": false,
+        // Generates corresponding ‘.map’ file.
+        "sourceMap": false,
+        // Specifies the location where debugger should locate TypeScript files instead of source locations. Use this flag if the sources will be located at run-time in a different location than that at design-time. The location specified will be embedded in the sourceMap to direct the debugger where the source files where be located.
+        // "sourceRoot": "",
+        // Do not emit declarations for code that has an /** @internal */ JSDoc annotation.
+        "stripInternal": false,
+        // Suppress excess property checks for object literals.
+        "suppressExcessPropertyErrors": false,
+        // Suppress --noImplicitAny errors for indexing objects lacking index signatures.
+        "suppressImplicitAnyIndexErrors": false,
+        // Specify ECMAScript target version: 'es3' (default), 'es5', or 'es6'.
+        "target": "es5",
+        // Run the compiler in watch mode. Watch input files and trigger recompilation on changes.
+        "watch": false
+    }
+}
