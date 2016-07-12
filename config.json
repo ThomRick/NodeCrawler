@@ -1,0 +1,30 @@
+{
+    "dependencies": {
+        "dev": {
+            "server": [],
+            "cli": [
+                "node_modules/jquery/dist/jquery.js",
+                "node_modules/jquery-ui/jquery-ui.js"   
+            ]
+        },
+        "release": {
+            "server": [],
+            "cli": []
+        }
+    },
+    "typescript": {
+        "options": {
+            "allowJs": true,
+            "diagnostics": true,
+            "listFiles": true,
+            "pretty": true,
+            "removeComments": true,
+            "target": "es5"
+        }
+    },
+    "mocha": {
+        "options": {
+            "reporter": "spec"
+        }
+    }
+}

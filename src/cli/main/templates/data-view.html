@@ -1,0 +1,29 @@
+<div>
+    <h4>Group: {{ $ctrl.group.name }} posts</h4>
+    <ul>
+        <li ng-repeat="post in $ctrl.posts">
+            <br/>
+            --------------------------------<br/>
+            Auteur: {{ post.author }}<br/>
+            Sujet: {{ post.title }}<br/>
+            --------------------------------<br/>
+            Commentaires:<br/>
+            <ul ng-show="post.comments.lenght !== 0">
+                <li ng-repeat="comment in post.comments">
+                <br/>
+                -----------------<br/>
+                Auteur: {{ comment.author }}<br/>
+                -----------------<br/>
+                Message: {{ comment.message }}<br/>
+                </li>
+
+            </ul>
+            <button ng-show="post.comments.length === 0"
+                    ng-src="post"
+                    ng-click="$ctrl.showComments(post)">
+                Montrer Commentaires
+            </button>
+            <br/>
+        </li>
+    </ul>
+</div>

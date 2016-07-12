@@ -5,8 +5,11 @@
   "description": "node application for crawling websites",
   "main": "main.js",
   "license": "UNLICENSED",
+  "repository": {},
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-browserify": "^0.5.1",
+    "gulp-clean": "^0.3.2",
     "gulp-mocha": "^2.2.0",
     "gulp-typescript": "^2.13.6",
     "gulp-util": "^3.0.7",
@@ -14,5 +17,8 @@
     "sinon": "^1.17.4",
     "typescript": "^1.8.10"
   },
-  "dependencies": {}
+  "dependencies": {
+    "angular": "^1.5.7",
+    "jquery": "^3.0.0"
+  }
 }
