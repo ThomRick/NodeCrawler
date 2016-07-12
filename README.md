@@ -1,15 +1,16 @@
-# NodeCrawler 0.0.1-SNAPSHOT
+# NodeCrawler 1.0.0
 
 # Technology
 
-    Client based on Aurelia.io framework.
+    Client based on AngularJs framework.
     Server based on NodeJS native API.
 
-# Roadmap
+# Version 1.0.0
 
-    0.1.0 : Develop Server side to expose the web client application.
-    1.0.0 : Develop client application navigation concepts.
-    1.1.0 : Develop Facebook client application module.
-    2.0.0 : Develop Server side to manage the data an produce the a text file.
+    Web application that allows to:
+        - connect on a facebook account
+        - retreive facebook groups
+        - select a facebook group and display associated posts
+        - select a post to comments
     
 
