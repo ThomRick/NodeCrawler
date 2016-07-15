@@ -10,13 +10,17 @@
             Commentaires:<br/>
             <ul ng-show="post.comments.lenght !== 0">
                 <li ng-repeat="comment in post.comments">
+                    <input type="checkbox"
+                           name="$ctrl.selectedPostIds"
+                           ng-checked="$crtl.selectedPost.indexOf(post) > -1"
+                           ng-click="$ctrl.selectPost(post)"
+                    />
                 <br/>
                 -----------------<br/>
                 Auteur: {{ comment.author }}<br/>
                 -----------------<br/>
                 Message: {{ comment.message }}<br/>
                 </li>
-
             </ul>
             <button ng-show="post.comments.length === 0"
                     ng-src="post"

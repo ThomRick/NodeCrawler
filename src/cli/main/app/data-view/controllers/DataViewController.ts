@@ -25,14 +25,15 @@ class DataViewController {
     private rootScopeService: ng.IRootScopeService;
     private postService: IPostService;
 
-    /**
-     * Controller's fields
-     */
+    /** Selected group */
     private group: Group = {
         id: "",
         name: ""
     };
+    /** displayed group posts */
     private posts: Array<Post> = [];
+    /** selected post */
+    private selectedPost: Array<Post> = [];
 
     /**
      * Constructor
@@ -49,12 +50,19 @@ class DataViewController {
     /**
      * showComments
      */
-    public showComments(post: Post) {
+    public showComments(post: Post): void {
         let postId: string = post.id;
         this.postService.getComments(postId)
         .then((comments: Array<Comment>) => {
             post.comments = comments;
         });
+    }
+
+    /**
+     * selectePost
+     */
+    public selectPost(post: Post): void {
+        
     }
 
     /**
