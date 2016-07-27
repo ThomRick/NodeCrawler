@@ -6,8 +6,9 @@ import Comment from "../models/Comment";
  * IPostService
  */
 interface IPostService {
-    getPosts(id: string): ng.IPromise<Array<Post>>;
-    getComments(postId: string): ng.IPromise<Array<Comment>>;
+    getPosts(id: string, securityToken: string): ng.IPromise<Array<Post>>;
+    getComments(postId: string, securityToken: string): ng.IPromise<Array<Comment>>;
+    extract(posts: Array<Post>): void;
 }
 
 export default IPostService;

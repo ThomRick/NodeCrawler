@@ -18,12 +18,12 @@ gulp.task("test-server", [ "compile-server" ], function() {
     .pipe(mocha(config.mocha.options));
 });
 
-gulp.task("install-server-properties", [ "test-server" ], function() {
-    return gulp.src("src/server/main/resources/*.properties")
+gulp.task("install-server-resources", [ "test-server" ], function() {
+    return gulp.src("src/server/main/resources/**")
     .pipe(gulp.dest("target/build/resources"));
 });
 
-gulp.task("install-server", [ "install-server-properties" ], function() {
+gulp.task("install-server", [ "install-server-resources" ], function() {
     return gulp.src("target/local/server/main/**")
     .pipe(gulp.dest("target/build"));
 });

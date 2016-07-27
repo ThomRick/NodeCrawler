@@ -5,7 +5,7 @@ import MenuSection from "../models/MenuSection";
  * IMenuSectionService
  */
 interface IMenuSectionService {
-    getSections(): ng.IPromise<Array<MenuSection>>;
+    getSections(securityToken: string): ng.IPromise<Array<MenuSection>>;
 }
 
 export default IMenuSectionService;

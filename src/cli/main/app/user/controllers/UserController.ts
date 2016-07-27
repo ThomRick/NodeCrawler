@@ -15,12 +15,19 @@ class UserController {
     private rootScopeService: ng.IRootScopeService;
     private userService: IUserService;
 
+    /**
+     * Controller scope fields
+     */
     private user: User = {
         id: "",
         name: "",
-        connected: false
+        connected: false,
+        securityToken: ""
     };
     
+    /**
+     * Constructor
+     */
     constructor($rootScope: ng.IRootScopeService, userService: IUserService) {
         this.rootScopeService = $rootScope;
         this.userService = userService;
@@ -28,7 +35,16 @@ class UserController {
         userService.getConnectedUser()
         .then((user: User) => {
             self.user = user;
-            self.rootScopeService.$emit("LOAD_MENU_SECTIONS");
+        });
+    }
+
+    /**
+     * saveToken
+     */
+    public saveToken() {
+        let securityToken: string = this.user.securityToken;
+        this.rootScopeService.$emit("DEPLOY_SECURITY_TOKEN", {
+            securityToken: securityToken
         });
     }
 }

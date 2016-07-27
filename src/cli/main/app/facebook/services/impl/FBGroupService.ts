@@ -3,6 +3,8 @@
 import IFBGroupService from "../IFBGroupService";
 import FBFeedResponse from "../../models/feed/FBFeedResponse";
 
+import FBUrlBuilder from "../../builders/FBUrlBuilder";
+
 /**
  * FBGroupService
  */
@@ -12,36 +14,32 @@ class FBGroupService implements IFBGroupService {
      * Angular dependency injections
      */
     static $inject = [
-        "$q"
+        "$http"
     ];
 
     /**
      * Angular injected services
      */
-    private qService: ng.IQService;
+    private httpService: ng.IHttpService;
+    
+    private fbUrlBuilder: FBUrlBuilder = new FBUrlBuilder();
 
     /**
      * Constructor
      */
-    constructor(qService: ng.IQService) {
-        this.qService = qService;
+    constructor($http: ng.IHttpService) {
+        this.httpService = $http;
     }
 
     /**
      * getGroupFeeds
      */
-    public getGroupFeeds(groupId: string): ng.IPromise<FBFeedResponse> {
-        let deferred: ng.IDeferred<FBFeedResponse> = this.qService.defer();
-        FB.api("/" + groupId + "/feed", "GET", {
-            fields: "from,message,story"
-        }, (fbFeedResponse: FBFeedResponse) => {
-            if (!fbFeedResponse || fbFeedResponse.error) {
-                deferred.reject("Error occured");
-            } else {
-                deferred.resolve(fbFeedResponse);
-            }
+    public getGroupFeeds(groupId: string, securityToken: string): ng.IPromise<FBFeedResponse> {
+        let url: string = this.fbUrlBuilder.build("/" + groupId + "/feed", securityToken);
+        return this.httpService.get<FBFeedResponse>(url)
+        .then<FBFeedResponse>((promiseValue: ng.IHttpPromiseCallbackArg<FBFeedResponse>) => {
+            return promiseValue.data;
         });
-        return deferred.promise;
     }
 }
 

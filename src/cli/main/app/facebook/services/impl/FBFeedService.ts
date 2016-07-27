@@ -6,6 +6,8 @@ import FBCommentResponse from "../../models/comment/FBCommentResponse";
 
 import FBAuthorResponse from "../../models/author/FBAuthorResponse";
 
+import FBUrlBuilder from "../../builders/FBUrlBuilder";
+
 /**
  * FBFeedService
  */
@@ -15,49 +17,42 @@ class FBFeedService implements IFBFeedService {
      * Angular dependency injections
      */
     static $inject = [
-        "$q"
+        "$http"
     ];
 
     /**
      * Angular injected services
      */
-    private qService: ng.IQService;
+    private httpService: ng.IHttpService;
+    private fbUrlBuilder: FBUrlBuilder = new FBUrlBuilder();
 
     /**
      * Constructor
      */
-    constructor($q: ng.IQService) {
-        this.qService = $q;
+    constructor($http: ng.IHttpService) {
+        this.httpService = $http;
     }
     
     /**
      * getFeedAuthor
      */
-    public getFeedAuthor(feedId: string): ng.IPromise<FBAuthorResponse> {
-        let deferred: ng.IDeferred<FBAuthorResponse> = this.qService.defer();
-        FB.api("/" + feedId + "/fields=from", "GET", (fbAuthorResponse: FBAuthorResponse) => {
-            if (!fbAuthorResponse || fbAuthorResponse.error) {
-                deferred.reject("Error occured");
-            } else {
-                deferred.resolve(fbAuthorResponse);
-            }
+    public getFeedAuthor(feedId: string, securityToken: string): ng.IPromise<FBAuthorResponse> {
+        let url: string = this.fbUrlBuilder.build("/" + feedId + "/fieds=from", securityToken);
+        return this.httpService.get<FBAuthorResponse>(url)
+        .then<FBAuthorResponse>((promiseValue: ng.IHttpPromiseCallbackArg<FBAuthorResponse>) => {
+            return promiseValue.data;
         });
-        return deferred.promise;
     }
 
     /**
      * getFeedComments
      */
-    public getFeedComments(feedId: string): ng.IPromise<FBCommentResponse> {
-        let deferred: ng.IDeferred<FBCommentResponse> = this.qService.defer();
-        FB.api("/" + feedId + "/comments", "GET", (fbCommentResponse: FBCommentResponse) => {
-            if (!fbCommentResponse || fbCommentResponse.error) {
-                deferred.reject("Error occured");
-            } else {
-                deferred.resolve(fbCommentResponse);
-            }
+    public getFeedComments(feedId: string, securityToken: string): ng.IPromise<FBCommentResponse> {
+        let url: string = this.fbUrlBuilder.build("/" + feedId + "/comments", securityToken);
+        return this.httpService.get<FBCommentResponse>(url)
+        .then<FBCommentResponse>((promiseValue: ng.IHttpPromiseCallbackArg<FBCommentResponse>) => {
+            return promiseValue.data;
         });
-        return deferred.promise;
     }
 }
 

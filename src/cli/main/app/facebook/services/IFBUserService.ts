@@ -8,8 +8,8 @@ import FBGroupResponse from "../models/group/FBGroupResponse";
  */
 interface IFBUserService {
     getConnectedUser(): ng.IPromise<FBDataResponse>;
-    getConnectedUserGroups(): ng.IPromise<FBGroupResponse>;
-    getUser(userId: string): ng.IPromise<FBDataResponse>;
+    getConnectedUserGroups(securityToken: string): ng.IPromise<FBGroupResponse>;
+    getUser(userId: string, securityToken: string): ng.IPromise<FBDataResponse>;
 }
 
 export default IFBUserService;

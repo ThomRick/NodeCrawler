@@ -43,7 +43,8 @@ class UserService implements IUserService {
                 let user: User = {
                     id: fbDataResponse.id,
                     name: fbDataResponse.name,
-                    connected: true
+                    connected: true,
+                    securityToken: ""
                 };
                 return user;
             });

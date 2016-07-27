@@ -3,7 +3,7 @@
 import IFBUserService from "../IFBUserService";
 import FBDataResponse from "../../models/FBDataResponse";
 import FBGroupResponse from "../../models/group/FBGroupResponse";
-
+import FBUrlBuilder from "../../builders/FBUrlBuilder";
 /**
  * FBUserService
  */
@@ -13,19 +13,26 @@ class FBUserService implements IFBUserService {
      * Angular dependency injections
      */
     static $inject = [
-        "$q"
+        "$q",
+        "$http"
     ];
 
     /**
      * Angular injected services
      */
     private qService: ng.IQService;
+    private httpService: ng.IHttpService;
 
+    /**
+     * 
+     */
+    private fbUrlBuilder: FBUrlBuilder = new FBUrlBuilder();
     /**
      * Constructor
      */
-    constructor($q: ng.IQService) {
+    constructor($q: ng.IQService, $http: ng.IHttpService) {
         this.qService = $q;
+        this.httpService = $http;
     }
 
     /**
@@ -46,22 +53,18 @@ class FBUserService implements IFBUserService {
     /**
      * getConnectedUserGroups
      */
-    public getConnectedUserGroups(): ng.IPromise<FBGroupResponse> {
-        let deferred: ng.IDeferred<FBGroupResponse> = this.qService.defer();
-        FB.api("/me/groups", "GET", (fbGroupResponse: FBGroupResponse) => {
-            if (!fbGroupResponse || fbGroupResponse.error) {
-                deferred.reject("Error occured");
-            } else {
-                deferred.resolve(fbGroupResponse);
-            }
+    public getConnectedUserGroups(securityToken: string): ng.IPromise<FBGroupResponse> {
+        let url: string = this.fbUrlBuilder.build("/me/groups", securityToken);
+        return this.httpService.get<FBGroupResponse>(url)
+        .then<FBGroupResponse>((promiseValue: ng.IHttpPromiseCallbackArg<FBGroupResponse>) => {
+            return promiseValue.data;
         });
-        return deferred.promise;
     }
 
     /**
      * getUser
      */
-    public getUser(id: string): ng.IPromise<FBDataResponse> {
+    public getUser(securityToken: string, id: string): ng.IPromise<FBDataResponse> {
         return null;
     }
 

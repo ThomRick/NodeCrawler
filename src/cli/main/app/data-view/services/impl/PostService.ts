@@ -59,11 +59,11 @@ class PostService implements IPostService {
     /**
      * getPosts
      */
-    public getPosts(id: string): ng.IPromise<Array<Post>> {
+    public getPosts(id: string, securityToken: string): ng.IPromise<Array<Post>> {
         let self = this;
         let fbFeedMessageFilter: FBFeedMessageFilter = new FBFeedMessageFilter();
         let postBuilder: PostBuilder = new PostBuilder();
-        return this.fbGroupService.getGroupFeeds(id)
+        return this.fbGroupService.getGroupFeeds(id, securityToken)
         .then((fbFeedResponse: FBFeedResponse) => {
             let fbFeedObjects: Array<FBFeedObject> = fbFeedResponse.data;
             let fbFeedMessages: Array<FBFeedMessage> = fbFeedMessageFilter.doFilter(fbFeedObjects);
@@ -72,11 +72,18 @@ class PostService implements IPostService {
     }
 
     /**
+     * extract
+     */
+    public extract(posts: Array<Post>): void {
+        
+    }
+
+    /**
      * getComments
      */
-    public getComments(postId: string): ng.IPromise<Array<Comment>> {
+    public getComments(postId: string, securityToken: string): ng.IPromise<Array<Comment>> {
         let self = this;
-        return this.fbFeedService.getFeedComments(postId)
+        return this.fbFeedService.getFeedComments(postId, securityToken)
         .then((fbCommentResponse: FBCommentResponse) => {
             let fbComments: Array<FBComment> = fbCommentResponse.data;
             return self.mappCommentsFrom(fbComments);  

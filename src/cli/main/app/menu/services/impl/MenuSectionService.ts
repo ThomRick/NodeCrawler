@@ -22,11 +22,12 @@ class MenuSectionService implements IMenuSectionService {
         this.fbUserService = fbUserService;
     }
 
-    public getSections(): ng.IPromise<Array<MenuSection>> {
+    public getSections(securityToken: string): ng.IPromise<Array<MenuSection>> {
         let self = this;
-        return this.fbUserService.getConnectedUserGroups()
+        return this.fbUserService.getConnectedUserGroups(securityToken)
         .then((fbGroupResponse: FBGroupResponse) => {
             let sections: Array<MenuSection> = [];
+            console.log("fbGroupResponse object : ", fbGroupResponse);
             let groupSection: MenuSection = self.menuSectionMapper.mappFrom(fbGroupResponse.data);
             sections.push(groupSection);
             return sections;

@@ -1,7 +1,16 @@
-<div>
-    <h4>Group: {{ $ctrl.group.name }} posts</h4>
+<div ng-show="$ctrl.group.id !== ''">
+    <h4>Groupe: {{ $ctrl.group.name }} posts</h4>
+    <button ng-click="$ctrl.extractPosts()"
+            ng-disabled="$ctrl.selectedPosts.length === 0">
+        Extraire Posts
+    </button>
     <ul>
         <li ng-repeat="post in $ctrl.posts">
+            <input type="checkbox"
+                   name="$ctrl.selectedPosts"
+                   ng-checked="$crtl.selectedPosts.indexOf(post) > -1"
+                   ng-click="$ctrl.selectPost(post)"
+            />
             <br/>
             --------------------------------<br/>
             Auteur: {{ post.author }}<br/>
@@ -10,11 +19,6 @@
             Commentaires:<br/>
             <ul ng-show="post.comments.lenght !== 0">
                 <li ng-repeat="comment in post.comments">
-                    <input type="checkbox"
-                           name="$ctrl.selectedPostIds"
-                           ng-checked="$crtl.selectedPost.indexOf(post) > -1"
-                           ng-click="$ctrl.selectPost(post)"
-                    />
                 <br/>
                 -----------------<br/>
                 Auteur: {{ comment.author }}<br/>
@@ -25,7 +29,7 @@
             <button ng-show="post.comments.length === 0"
                     ng-src="post"
                     ng-click="$ctrl.showComments(post)">
-                Montrer Commentaires
+                Afficher Commentaires
             </button>
             <br/>
         </li>

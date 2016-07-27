@@ -19,7 +19,7 @@ class FBApplicationService implements IFBApplicationService {
             appId      : "1719791898287877",
             cookie     : true,
             xfbml      : true,
-            version    : "v2.6"
+            version    : "v2.0"
         });
     }
 }

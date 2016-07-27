@@ -3,6 +3,7 @@ import IMenuSectionService from "../services/IMenuSectionService";
 import MenuSection from "../models/MenuSection";
 import MenuSectionItem from "../models/MenuSectionItem";
 
+import TokenDataEvent from "../../notification/models/TokenDataEvent";
 import DisplayDataNotificationData from "../../notification/models/DisplayDataNotificationData";
 
 /**
@@ -28,14 +29,12 @@ class MenuController {
      * Controller's fields
      */
     private sections: Array<MenuSection> = [];
+    private securityToken: string = "";
 
     /**
      * Constructor
      */
-    constructor(
-        $rootScope: ng.IRootScopeService,
-        menuSectionService: IMenuSectionService
-    ) {
+    constructor($rootScope: ng.IRootScopeService, menuSectionService: IMenuSectionService) {
         this.rootScope = $rootScope;
         this.menuSectionService = menuSectionService;
         this.defineEvents();
@@ -57,8 +56,9 @@ class MenuController {
      */
     private defineEvents() {
         let self = this;
-        this.rootScope.$on("LOAD_MENU_SECTIONS", () => {
-            this.menuSectionService.getSections()
+        this.rootScope.$on("DEPLOY_SECURITY_TOKEN", (event: ng.IAngularEvent, data: TokenDataEvent) => {
+            this.securityToken = data.securityToken;
+            this.menuSectionService.getSections(this.securityToken)
             .then((sections: Array<MenuSection>) => {
                 self.sections = sections;
             });

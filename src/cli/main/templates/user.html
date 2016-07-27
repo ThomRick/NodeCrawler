@@ -1,6 +1,20 @@
 <div>
     <h1>Bonjour {{ $ctrl.user.name }} !</h1>
     <div>
-        <fb:login-button show-faces="true" max-rows="1" size="large"></fb:login-button>
+        <fb:login-button show-faces="true" 
+                         max-rows="1" 
+                         size="large">
+        </fb:login-button>
+    </div>
+    <div ng-show="$ctrl.user.securityToken === ''">
+        <a href="https://developers.facebook.com/tools/explorer/">
+            Lien de generation de token
+        </a>
+    </div>
+    <div>
+        <input type="text" ng-model="$ctrl.user.securityToken" />
+        <button ng-click="$ctrl.saveToken()">
+            Valider Token
+        </button>
     </div>
 </div>
