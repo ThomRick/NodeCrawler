@@ -1,7 +1,7 @@
 {
   "name": "node-crawler",
   "author": "ThomRick",
-  "version": "0.0.1-SNAPSHOT",
+  "version": "1.1.0",
   "description": "node application for crawling websites",
   "main": "main.js",
   "license": "UNLICENSED",
